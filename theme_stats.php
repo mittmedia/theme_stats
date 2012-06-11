@@ -34,3 +34,15 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
+global $wpdb;
+
+get_themes(); // Will make the global $wp_themes available
+
+$blog_count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->blogs;" ) );
+$available_themes = "";
+
+var_dump( $wp_themes );
+
+for ($blog_id = 1; $blog_id <= $blog_count; $blog_id++) {
+  
+}
