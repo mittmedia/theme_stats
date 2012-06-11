@@ -34,15 +34,67 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-global $wpdb;
+add_action('admin_menu', 'theme_stats_add_pages');
 
-get_themes(); // Will make the global $wp_themes available
+function theme_stats_add_pages() {
+  add_management_page('Theme Stats', 'Theme Stats', 'Super Admin', 'theme_stats_manage', 'theme_stats_manage_page');
+}
 
-$blog_count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->blogs;" ) );
-$available_themes = "";
+function theme_stats_manage_page() {
+  $wp_blogs   = get_blogs();
+  $wp_themes  = get_themes_as_objects();
 
-var_dump( $wp_themes );
+  usort($wp_themes, 'cmp_wp_themes');
 
-for ($blog_id = 1; $blog_id <= $blog_count; $blog_id++) {
-  
+  add_current_theme_to_blogs( $wp_blogs );
+  add_blog_count_to_themes( $wp_blogs, $wp_themes );
+
+  include 'management.php';
+}
+
+function get_blogs() {
+  global $wpdb;
+  global $wp_blogs;
+
+  $wp_blogs = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->blogs;" ) );
+
+  return $wp_blogs;
+}
+
+function get_themes_as_objects() {
+  $wp_themes = get_themes();
+  $wp_themes_as_objects = array();
+
+  foreach( $wp_themes as $wp_theme ) {
+    $wp_theme["Number of Blogs"] = 0;
+    array_push( $wp_themes_as_objects, (object)$wp_theme );
+  }
+
+  return $wp_themes_as_objects;
+}
+
+function get_blog_current_theme( $blog_id ) {
+  return get_blog_option( $blog_id, "current_theme" );
+}
+
+function add_current_theme_to_blogs( $wp_blogs ) {
+  foreach( $wp_blogs as $wp_blog ) {
+    $wp_blog->current_theme = get_blog_current_theme( $wp_blog->blog_id );
+  }
+}
+
+function add_blog_count_to_themes( $wp_blogs, $wp_themes ) {
+  foreach( $wp_themes as $wp_theme ) {
+    foreach( $wp_blogs as $wp_blog ) {
+      if( $wp_theme->Name == $wp_blog->current_theme )
+        $wp_theme->{"Number of Blogs"}++;
+    }
+  }
+}
+
+function cmp_wp_themes( $a, $b ) {
+  if( $a->Name ==  $b->Name ) {
+    return 0;
+  }
+  return ($a->Name < $b->Name) ? 1 : -1;
 }
