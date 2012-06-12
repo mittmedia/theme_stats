@@ -3,21 +3,21 @@
 function render_theme_stats_list( $wp_themes ) {
   $html = "";
 
-  $html .= "<table class='widefat' cellspacing='0'>";
+  $html .= "";
 
   $html .= <<<html
 
-<thead>
-  <tr>
-    <th class='row-title' style='width: 250px;'>Name</th>
-    <th class='desc'>Description</th>
-    <th class='num-blogs' style='width: 125px; text-align: right'>Number of Blogs</th>
-  </tr>
-</thead>
+<table class='widefat' cellspacing='0'>
+  <thead>
+    <tr>
+      <th class='row-title' style='width: 250px;'>Name</th>
+      <th class='desc'>Description</th>
+      <th class='num-blogs' style='width: 125px; text-align: right'>Number of Blogs</th>
+    </tr>
+  </thead>
+  <tbody>
 
 html;
-
-  $html .= "<tbody>";
 
   foreach ( $wp_themes as $wp_theme ) {
     $html .= render_theme_stats_list_item( $wp_theme );
