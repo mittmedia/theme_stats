@@ -34,6 +34,15 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
+require_once( "wp_mvc/init.php" );
+
+$app = new \WpMvc\Application();
+
+$app->config->set_plugin_dir( WP_PLUGIN_DIR );
+$app->config->set_plugin_name( "theme_stats" );
+
+$app->init();
+
 require_once( WP_PLUGIN_DIR . "/theme_stats/pages.php" );
 
 add_action( "admin_menu", "theme_stats_add_pages" );
