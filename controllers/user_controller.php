@@ -28,10 +28,6 @@ class UserController extends \WpMvc\BaseController
 
     $users = User::all();
 
-    var_dump( $users );
-
-    die();
-
     if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
       $ID = $_POST['user']['ID'];
 

@@ -6,9 +6,7 @@
 
   <?php
     foreach ( $users as $user ) {
-      global $user;
-
-      \WpMvc\ViewHelper::render_template( "templates/user" );
+      \WpMvc\ViewHelper::render_template( "templates/user", $user );
     }
   ?>
   
