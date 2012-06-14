@@ -11,17 +11,6 @@ class UserController extends \WpMvc\BaseController
     self::render( $this, "index" );
   }
 
-  public function show()
-  {
-    $user = User::find(1);
-    echo $user->attr( "user_email" );
-    $user->attr( "user_email", "fredrik.sundstrom@gmail.com" );
-    echo $user->attr( "user_email" );
-    $user->save();
-
-    self::render( $this, __FUNCTION__ );
-  }
-
   public function edit()
   {
     global $user;

@@ -4,7 +4,7 @@ Plugin Name: Theme Stats
 Plugin URI: https://github.com/fredriksundstrom/theme_stats
 Description: It shows all the themes and its use statistics.
 Version: 1.0.0
-Author: Fredrik Sundström
+Author: Fredrik Sundström and Magnus Engström
 Author URI: https://github.com/fredriksundstrom
 License: MIT
 */
@@ -34,7 +34,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-require_once( "wp_mvc/init.php" );
+require_once( "wp_mvc-1.0.0/init.php" );
 
 $app = new \WpMvc\Application();
 
@@ -49,6 +49,7 @@ function theme_stats_add_pages()
   add_management_page( "Theme Stats", "Theme Stats", "Super Admin", "theme_stats_manage", "theme_stats_manage_page" );
   add_management_page( "Theme Stats 2", "Theme Stats 2", "Super Admin", "theme_stats_manage_2", "theme_stats_manage_page2" );
   add_management_page( "Theme Stats 3", "Theme Stats 3", "Super Admin", "theme_stats_manage_3", "theme_stats_manage_page3" );
+  add_management_page( "Theme Stats 4", "Theme Stats 4", "Super Admin", "theme_stats_manage_4", "theme_stats_manage_page4" );
 }
 
 function theme_stats_manage_page()
@@ -70,4 +71,11 @@ function theme_stats_manage_page3()
   global $app;
 
   $app->user_controller->index();
+}
+
+function theme_stats_manage_page4()
+{
+  global $app;
+
+  $app->dmu_controller->index();
 }
