@@ -1,4 +1,4 @@
-<?php global $themes; ?>
+<?php global $blogs; ?>
 
 <div class="wrap">
   <div id="icon-tools" class="icon32"><!-- --></div>
@@ -14,8 +14,8 @@
     </thead>
     <tbody>
       <?php
-        foreach ( $themes as $theme ) {
-          \WpMvc\ViewHelper::render_template( 'templates/theme', $theme );
+        foreach ( $blogs as $blog ) {
+          \WpMvc\ViewHelper::render_template( 'templates/blog', $blog );
         }
       ?>
     </tbody>
