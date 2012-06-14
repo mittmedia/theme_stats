@@ -47,35 +47,11 @@ add_action( "admin_menu", "theme_stats_add_pages" );
 function theme_stats_add_pages()
 {
   add_management_page( "Theme Stats", "Theme Stats", "Super Admin", "theme_stats_manage", "theme_stats_manage_page" );
-  add_management_page( "Theme Stats 2", "Theme Stats 2", "Super Admin", "theme_stats_manage_2", "theme_stats_manage_page2" );
-  add_management_page( "Theme Stats 3", "Theme Stats 3", "Super Admin", "theme_stats_manage_3", "theme_stats_manage_page3" );
-  add_management_page( "Theme Stats 4", "Theme Stats 4", "Super Admin", "theme_stats_manage_4", "theme_stats_manage_page4" );
 }
 
 function theme_stats_manage_page()
 {
   global $app;
 
-  $app->user_controller->edit();
-}
-
-function theme_stats_manage_page2()
-{
-  global $app;
-
-  $app->user_controller->new_user();
-}
-
-function theme_stats_manage_page3()
-{
-  global $app;
-
-  $app->user_controller->index();
-}
-
-function theme_stats_manage_page4()
-{
-  global $app;
-
-  $app->dmu_controller->index();
+  $app->theme_controller->index();
 }
