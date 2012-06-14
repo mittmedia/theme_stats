@@ -26,17 +26,13 @@ class UserController extends \WpMvc\BaseController
   {
     global $user;
 
-    $users = User::all();
+    $user = User::find( $_GET['id'] );
 
     if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-      $ID = $_POST['user']['ID'];
-
-      $user = User::find($ID);
+      $user->takes_post( $_POST['user'] );
 
       $user->save();
     }
-
-    $user = User::find( $_GET['id'] );
 
     self::render( $this, "edit" );
   }
@@ -48,9 +44,13 @@ class UserController extends \WpMvc\BaseController
     $user = User::virgin();
 
     if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+      $user->takes_post( $_POST['user'] );
+
       $insert_id = $user->save();
 
-      echo "<meta http-equiv='refresh' content='0; url=http://blogg.dt.se/wp-admin/tools.php?page=theme_stats_manage&id=" . $insert_id . "' />";
+      echo "Sparad!";
+
+      //echo "<meta http-equiv='refresh' content='0; url=http://blogg.dt.se/wp-admin/tools.php?page=theme_stats_manage&id=" . $insert_id . "' />";
       
       exit;
     }
