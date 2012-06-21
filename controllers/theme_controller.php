@@ -1,13 +1,16 @@
 <?php
 
-class ThemeController extends \WpMvc\BaseController
+namespace ThemeStats
 {
-  public function index()
+  class ThemeController extends \WpMvc\BaseController
   {
-    global $blogs;
+    public function index()
+    {
+      global $blogs;
 
-    $blogs = Blog::all();
+      $blogs = Blog::all();
 
-    self::render( $this, "index" );
+      self::render( $this, "index" );
+    }
   }
 }
