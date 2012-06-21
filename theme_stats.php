@@ -38,9 +38,7 @@ require_once( "wp_mvc-1.0.0/init.php" );
 
 $app = new \WpMvc\Application();
 
-\WpMvc\Config::home_path( WP_PLUGIN_DIR . "/theme_stats" );
-
-$app->init();
+$app->init( WP_PLUGIN_DIR . "/theme_stats" );
 
 // WP: Add pages
 add_action( "admin_menu", "theme_stats_add_pages" );
