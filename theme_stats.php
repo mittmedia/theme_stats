@@ -34,7 +34,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-require_once( "wp_mvc-1.0.0/init.php" );
+require_once( "wp_mvc/init.php" );
 
 $app = new \WpMvc\Application();
 
